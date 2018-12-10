@@ -1,9 +1,8 @@
 language: minimal
 services:
 - docker
-install:
-- echo ${DOCKER_PASSWORD} | docker login -u ${DOCkER_USERNAME} --password-stdin
 script:
+- echo "${DOCKER_PASSWORD}" | docker login -u "${DOCkER_USERNAME}" --password-stdin
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} lint
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} build
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} test
