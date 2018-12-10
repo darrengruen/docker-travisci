@@ -1,0 +1,25 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+  - name: "Whoami"
+    command: "whoami"
+    expectedOutput: ["travis"]
+  - name: "which travis"
+    command: "which"
+    args: ["travis"]
+    expectedOutput: ['/home/travis/.gem/ruby/2.5.0/bin/travis']
+  - name: "travis version"
+    command: "travis"
+    args: ["version"]
+    exitCode: 1
+    expectedError: ["1.8.9"]
+  - name: "ruby version"
+    command: "ruby"
+    args: ["--version"]
+    expectedOutput: ['2.5.3']
+metadataTest:
+  cmd: ["--help"]
+  entrypoint: ["travis"]
+  exposedPorts: []
+  volumes: ["/home/travis/.travis", "/home/travis/app"]
+  workdir: "/home/travis/app"
