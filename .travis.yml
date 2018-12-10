@@ -1,13 +1,19 @@
 language: minimal
+
 services:
 - docker
-script:
+
+before_install:
 - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCkER_USERNAME}" --password-stdin
+
+script:
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} lint
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} build
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} test
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} push
+
 env:
   global:
   - secure: Sl9rxKZ9YNmDiHF19Ny8CponWcYVB19U13pxSxhFvXQl7WTCAtO+AL61+LL8zg+YrkZ/3+ML2+2K2ssvvMNSHvo4LBde4Tv9fwdfxDyDi1A+C6V6EPGRyHNWBbLNKmCujypvxty4L77t2ynE5ly98f3ES4jOlaAeTMmZuoixK8OzfI8UV/E7JBTiTs48MsRd3GnWia4DJ8vnthavl3azsYnmMLoTFba7ZGPPk8+OAwRvDMR9VbbQwUNOzlgbIMptuSonTMIiQPbS7Y7aMsLL0TmFraNM0uZlYqs2uhd0IJeTZOCsv2C1HzidjtCGoBDvBTHjixQ/4vkxKEbInAoYxFAGpMqSW2IIV4jWr2G9f3aEbYMZOrT5aQyjfW7kV77mrkqIDSH5RK0SUimFgObwone82M24BK6Z4t1BIPr/EusEoVjqAuUTJ31tByvKPFBUSWCorX2oXqgQfzduOQbAC9ij+C7f7FB1gJA8xClwufnz2HW9GJsp+pPJj+rtohcTfQ1r7Egudm5442LuYgPWrrIuTRu2AOFvOfqxbI7Z3AaUMGex8fmWxajHg6yY+6w9Qsfjn1bVwB9jaTuXlYwAfuVGkIWOOuLH1ssarQ051an5UKyZktGL8lFkvN4jJ7NYTZZR/adyTpyY9kklRGOsCtSlcjklfKeSm6a9NLjd0ao=
   - secure: yBAruox0eefAjY3EaJDRL0qFQSD7b+gOCZ8qgyVYLKSgIIP5Cd1WFrZ1OzkeW98y5ShpEDlL0fKinivshnvymh3UdKUjaXbX+w5r12l2bXaSOpbTn1OJeWGIaTWw5O2pCJKlAndqF3ZUvQss8yiF+M1tGgZ9AivfVc+NDw/LqQIKu+SgmJSWA/CXBp4iuJE9kq84vkzEthPLKLV93ePaRbz71yA/BesO+7No3aX6HDJvhMOqf7srpfpFOgTu6HvYt5UOo0I9Xe2Pl7vjWdYd54BBMLHi1oY0JEyQNa0ZzdTvkroIjSbbnKM+Q0wqBZjGNyJPjPFjyXUdYM6HDzqyatGFHqT+ZWbSysyaas2Va4lA08CrLaJS9IHMYxKqMPCIAlxBQlIDRPyRsfVmElfjrgDdugEZXkdYxcNOo5k+wHb61mUHoVRBy6IBNgxVlSX4TpAPMqQGLEzODPV+FNyYte2CJ1WtbNq/+a4R8qfPSBR3wd4mi2UIqHi5kxK/T+RWAa4lhIKKYyjvLvuuBaGoCfaHyYTNgi2vj2ApELWuTDn+Cd6xKf7UC9YOwpuTJBggtGLP//mHOSD2hvf1DOtSO6aGM7WuMN0QvMB1gDr1RLzVPJJxoWB57ukBuKlU3EuyrXzWqz5j29tCdCWeZiieHZQj8NbZDPKyw1UsQ0uzM8M=
+
