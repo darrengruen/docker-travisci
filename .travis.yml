@@ -3,7 +3,7 @@ language: minimal
 services:
 - docker
 
-before_install:
+before_script:
 - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCkER_USERNAME}" --password-stdin
 
 script:
