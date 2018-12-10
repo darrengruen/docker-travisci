@@ -2,7 +2,7 @@ language: minimal
 services:
 - docker
 before_script:
-- echo "${DOCKER_PASSWORD}" | docker login --username "${DOCkER_USERNAME}" --password-stdin
+- echo "$DOCKER_PASSWORD" | docker login --username "$DOCkER_USERNAME" --password-stdin
 script:
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} lint
 - make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} build
