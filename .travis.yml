@@ -1,13 +1,13 @@
+sudo: required
+
 language: minimal
+
 services:
-- docker
+  - docker
+
 script:
-- echo ${DOCKER_PASSWORD} | docker login --username ${DOCkER_USERNAME} --password-stdin
-- make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} lint
-- make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} build
-- make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} test
-- make branch=${TRAVIS_BRANCH} commit=${TRAVIS_COMMIT} tag=${TRAVIS_BRANCH} push
-env:
-  global:
-  - secure: V+yjhjfVrHTY44LbBSsCzRESm5onw9h4jhrrBSKQFPu0yOKFflRyfmwp8tDuVBUTT/bVO3P15s5gTs4VCHjISycQf/NzaxlDhS8LzSlBDssqHhGEcNBya6wBdTZkawpeXDJCva829ucRNLnU7JtIFZDtNXJCDrYYi0hsiVTJHBm167zI0iFCbE1Twnl074GDmzNw1/ib+/gl8EEpwCkUwC9D8IY1xv0THAX+tRTY6iw+Xca/dAZh2XgE9YiJ5BqOVHqMYKRauMshJVKFEq3pwqksdOvPXiODsQbwZJd4ZDNxL50rD5VTnKqC5W+DyjnvAMTen7/T+0z2cMxEf8Bh2p1wYc1naO40CkKmXV2pw7ipijxGyvgPYGADyZjdkhU53dmyIeriOxkDx8P36G3h4a1Or7ysjTODmnMXRavgDqNPDwHQOo8JbI3eFlEE2hA1hUy1V15C25hekCANxpVqrhtWk+SI/b39+mBmHT/TQAc9gjZaHKo8T7S4Bry4bZdVna8He1sd7SQzsOL731k5NMkN6hu1M1svPJZ/aiwSryHJdeR0mATOhqxn38BvzXj9YxyqaA7nhsOtaztEeGzZRK+dhXaz2+Vck8oXrVGZPsXV0sgV2nKIadG+Y4k8/9jQx2S+xAYrB5GM5ZoIm2iCUFOBVW1FCwM2zN5Crefdmqk=
-  - secure: 5pOfARxOSp3DfA6X0fEJTOs+QkaHvZkKJEZoMdCO7SAtdW8wCevcYPqjUE/NYU2whbaae1BdcCl2+KBJU/prlHHjIA26xhj/Hr/bw7RQvvSTs8UO7BMJti5eFlDuFw21bvAzi10tjtq8Z5sU366eSdeUaYQeQU03Y7IGs6qUs5LWWQkbjTJgZXVWKx71pOrKkyRMu/CKsUDSH94PjnMA81H7pQguGVeVgnCVjX+4OC0uOqfwtNYivgPRQAD7FThuy1BIvTGAxMoO5lr/Uk2MUQr5EnJdBQ9mKjwIRjcEUnHXMgGOxG+fVKFpgsBxdhoeijptnVccb7h4CLJSbG3qZz9VrMldp4hqSw0GjQF092qC4KbPp5Uax7zUOBTToZUD0XHnWZdTJi6D4aQd26cw8eX1Q8hGhxeg9TVrKsYRnL1ZJvLfbJSB8y1AF7Ic1E1hmbZGnJnDtC5PEkO8OfyLYmguerWW2KWw2fZMl+iQAxFu+QOeDY1eVFnlEvbbcxrC4hC4qXW18Llz1bobNK83iGIZAmDTJaeO6WoWGpZZ/X71O3fbiN5tiXCUG8ouDbYzMW9gYNSGVoRXVCqCNqFUjuo10Y2COnh9JgdM1AWgJ3mCnNDBfR6S64SlU4vGhqUighduwTflexV7usN9UtKA0MUJi0Lv0A9kAVdVyt7xNQU=
+  - docker login --username ${DOCkER_USERNAME} --password-stdin <<< ${DOCKER_PASSWORD}
+  - make lint
+  - make build
+  - make test
+  - make push
