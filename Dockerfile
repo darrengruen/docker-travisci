@@ -12,8 +12,6 @@ USER travis
 
 RUN gem install travis \
       -v 1.8.9 \
-      --no-rdoc \
-      --no-ri \
       --user-install
 
 WORKDIR /home/travis/app
