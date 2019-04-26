@@ -3,7 +3,7 @@ language: minimal
 services:
 - docker
 script:
-- docker login -u ${DOCkER_USERNAME} -p ${DOCKER_PASSWORD}
+- docker login -u ${DOCkER_USERNAME} --password-stdin <<< ${DOCKER_PASSWORD}
 - make lint
 - make build
 - make test
