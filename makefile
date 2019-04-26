@@ -8,6 +8,10 @@ img           ?= ${ns}/${app}:${tag}
 ns            ?= gruen
 tag           ?= $(shell sed 's|/|_|g' <<< ${TRAVIS_BRANCH})
 
+# ifeq (${tag},master)
+  # $(info $${tag}: ${tag})
+# endif
+
 .PHONY: build
 build:
 	docker build \
@@ -22,8 +26,6 @@ clean:
 
 .PHONY: info
 info:
-	$(info $${TRAVIS_BRANCH}: ${TRAVIS_BRANCH})
-	$(info $${tag}: ${tag})
 
 .PHONY: lint
 lint:
@@ -31,7 +33,10 @@ lint:
 	
 .PHONY: push
 push:
-	docker push ${img}
+	$(eval base = [0-9]{1,3})
+	$(eval match = ^${base}(.${base})?(.${base})?((_|-).*)?)
+	echo "${match}"
+	[[ ${tag} =~ ${match} ]] && docker push ${img} || echo "No push, not a version tag"
 
 .PHONY: test
 test:
